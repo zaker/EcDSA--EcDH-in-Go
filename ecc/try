@@ -1,0 +1,3 @@
+6g -o ecc.6 curve.go point.go
+6g test.go
+6l -o test test.6
