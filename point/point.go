@@ -19,7 +19,7 @@ func Add(J,K Point) Point {
 	return L
 }
 
-func Nega(J Point) Point{
+func Neg(J Point) Point{
 	var L Point
 
 	return L
