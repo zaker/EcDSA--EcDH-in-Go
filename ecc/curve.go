@@ -9,7 +9,6 @@ import (
 func (C *Curve) GetCurve(name string) *Curve {
 
 	// 	C := new(Curve)
-	print("debug: get curve\n")
 	switch name {
 
 	case "secp112r1":
@@ -180,79 +179,76 @@ func (C *Curve) GetCurve(name string) *Curve {
 /* sets Curve parameters to p,a,b,gx,gy,n,h string*/
 func (C *Curve) load_curve_hex(name, p, a, b, gx, gy, n, h string) *Curve {
 
-	print("debug: load_curve\n")
 	// 	defer print("debug: loaded curve\n")
 	return C.load_curve(name, p, a, b, gx, gy, n, h, 16)
 }
 
 func (C *Curve) load_curve(name, p, a, b, gx, gy, n, h string, base int) *Curve {
 	// 	C := new(Curve)
-// 	fmt.Printf("debug: load_curve %s\np: %s\na: %s\nb: %s\ngx:%s\ngy:%s\nn: %s\nh: %s\nbase: %d\n", name, p, a, b, gx, gy, n, h, base)
+	// 	fmt.Printf("debug: load_curve %s\np: %s\na: %s\nb: %s\ngx:%s\ngy:%s\nn: %s\nh: %s\nbase: %d\n", name, p, a, b, gx, gy, n, h, base)
 	// 	defer print("debug: loaded curve ",name,"\n")
 	C.name = name
-	C.G = new(Point)
-	C.p = new(big.Int)
-	C.a = new(big.Int)
-	C.b = new(big.Int)
-	C.n = new(big.Int)
-	C.h = new(big.Int)
-// 	C.G.X = new(big.Int)
-// 	C.G.Y = new(big.Int)
-	
+
+	// 	C.G.X = new(big.Int)
+	// 	C.G.Y = new(big.Int)
+
 	// 	C.p.SetString(p, base)
 
 	// 	pt.SetString(p,base)
-		
+
 	C.p.SetString(p, base)
 	// 	print(C.p.String(), "\n")
 	C.a.SetString(a, base)
 	C.b.SetString(b, base)
-	
-	C.G.SetString(gx,gy, base)
+
+	C.G.SetString(gx, gy, base)
 
 	C.n.SetString(n, base)
 	C.h.SetString(h, base)
-	
-// 	print(C.G.X.String(),"\n")
-// 			C.Print()
-// 		fmt.Printf("\n CX \n")
+
+	// 	print(C.G.X.String(),"\n")
+	// 			C.Print()
+	// 		fmt.Printf("\n CX \n")
 	return C
 }
 
 
 func (C *Curve) Print() {
 
-// 	fmt.Printf("Curve: %s\n", C.name)
+	// 	fmt.Printf("Curve: %s\n", C.name)
 	fmt.Printf("%s\n", C.String())
 
 }
 
-func (C *Curve) String() string{
+func (C *Curve) String() string {
 	s := ""
-	
-	s = "Curve: " + C.name + "\n" 
+
+	s = "Curve: " + C.name + "\n"
 	s += "p: " + C.p.String() + "\n"
 	s += "a: " + C.a.String() + "\n"
 	s += "b: " + C.b.String() + "\n"
 	s += "n: " + C.n.String() + "\n"
 	s += "h: " + C.h.String()
 	s += C.G.String()
-	
-	
-	
+
 	return s
 }
 
 func (C *Curve) Test() {
-	print("hoho\n")
 	C.GetCurve("secp112r1")
-	print("hoho\n")
 	C.Print()
 }
 
 func NewCurve() *Curve {
 
-	return new(Curve)
+	C := new(Curve)
+	C.G = NewPoint()
+	C.p = new(big.Int)
+	C.a = new(big.Int)
+	C.b = new(big.Int)
+	C.n = new(big.Int)
+	C.h = new(big.Int)
+	return C
 }
 
 // func (C *Curve)GetCurve(name string) *Curve{
