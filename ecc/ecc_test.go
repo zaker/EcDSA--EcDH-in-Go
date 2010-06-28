@@ -140,3 +140,38 @@ func TestSigning(t *testing.T) {
 	}
 
 }
+
+func TestDiffieHellman(t *testing.T) {
+
+	secret := "secret0"
+
+	h := sha.New()
+
+	h.Write([]byte(secret))
+	secnum := new(big.Int).SetBytes(h.Sum())
+
+	C := NewCurve()
+	curve_name := "secp256k1"
+	C.GetCurve(curve_name)
+
+	A := NewPair()
+
+	A.EccdsaKeyGen(secnum, C)
+
+	secret2 := "secret032"
+
+	h.Reset()
+
+	h.Write([]byte(secret2))
+	secnum2 := new(big.Int).SetBytes(h.Sum())
+
+	B := NewPair()
+
+	B.EccdsaKeyGen(secnum2, C)
+
+	if A.EccDH(B.Q).Cmp(B.EccDH(A.Q)) != 0 {
+		t.Errorf("Diffie Hellman failed")
+
+	}
+
+}

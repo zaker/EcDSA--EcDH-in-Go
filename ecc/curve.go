@@ -20,7 +20,7 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"DB7C2ABF62E35E7628DFAC6561C5",
 			"01")
 	case "secp112r2":
-		return C.load_curve("secp112r2",
+		return C.load_curve_hex("secp112r2",
 			"DB7C2ABF62E35E668076BEAD208B",
 			"6127C24C05F38A0AAAF65C0EF02C",
 			"51DEF1815DB5ED74FCC34C85D709",
@@ -38,7 +38,7 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"CF5AC8395BAFEB13C02DA292DDED7A83",
 			"FFFFFFFE0000000075A30D1B9038A115",
 			"01")
-	case secp128r2:
+	case "secp128r2":
 		return C.load_curve_hex("secp128r2",
 			"FFFFFFFDFFFFFFFFFFFFFFFFFFFFFFFF",
 			"D6031998D1B3BBFEBF59CC9BBFF9AEE1",
