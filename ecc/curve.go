@@ -8,7 +8,6 @@ import (
 // var Curves = map[string] Curve{
 func (C *Curve) GetCurve(name string) *Curve {
 
-	// 	C := new(Curve)
 	switch name {
 
 	case "secp112r1":
@@ -20,19 +19,16 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"A89CE5AF8724C0A23E0E0FF77500",
 			"DB7C2ABF62E35E7628DFAC6561C5",
 			"01")
-	// 	break;
-	//See remark in curves.h
-	/*case secp112r2:
-	domain_parameters_set_hex(out, "secp112r2",
-										"DB7C2ABF62E35E668076BEAD208B",
-										"6127C24C05F38A0AAAF65C0EF02C",
-										"51DEF1815DB5ED74FCC34C85D709",
-										"4BA30AB5E892B4E1649DD0928643",
-										"ADCD46F5882E3747DEF36E956E97",
-										"36DF0AAFD8B8D7597CA10520D04B",
-										"04");
-	*/
-	// 	break;
+	case "secp112r2":
+		return C.load_curve("secp112r2",
+			"DB7C2ABF62E35E668076BEAD208B",
+			"6127C24C05F38A0AAAF65C0EF02C",
+			"51DEF1815DB5ED74FCC34C85D709",
+			"4BA30AB5E892B4E1649DD0928643",
+			"ADCD46F5882E3747DEF36E956E97",
+			"36DF0AAFD8B8D7597CA10520D04B",
+			"04")
+
 	case "secp128r1":
 		return C.load_curve_hex("secp128r1",
 			"FFFFFFFDFFFFFFFFFFFFFFFFFFFFFFFF",
@@ -42,19 +38,16 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"CF5AC8395BAFEB13C02DA292DDED7A83",
 			"FFFFFFFE0000000075A30D1B9038A115",
 			"01")
-	// 	break;
-	//See remark in curves.h
-	/*case secp128r2:
-	domain_parameters_set_hex(out, "secp128r2",
-										"FFFFFFFDFFFFFFFFFFFFFFFFFFFFFFFF",
-										"D6031998D1B3BBFEBF59CC9BBFF9AEE1",
-										"5EEEFCA380D02919DC2C6558BB6D8A5D",
-										"7B6AA5D85E572983E6FB32A7CDEBC140",
-										"27B6916A894D3AEE7106FE805FC34B44",
-										"3FFFFFFF7FFFFFFFBE0024720613B5A3",
-										"04");
-	*/
-	// 	break;
+	case secp128r2:
+		return C.load_curve_hex("secp128r2",
+			"FFFFFFFDFFFFFFFFFFFFFFFFFFFFFFFF",
+			"D6031998D1B3BBFEBF59CC9BBFF9AEE1",
+			"5EEEFCA380D02919DC2C6558BB6D8A5D",
+			"7B6AA5D85E572983E6FB32A7CDEBC140",
+			"27B6916A894D3AEE7106FE805FC34B44",
+			"3FFFFFFF7FFFFFFFBE0024720613B5A3",
+			"04")
+
 	case "secp160k1":
 		return C.load_curve_hex("secp160k1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFAC73",
@@ -64,7 +57,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"938CF935318FDCED6BC28286531733C3F03C4FEE",
 			"0100000000000000000001B8FA16DFAB9ACA16B6B3",
 			"01")
-	// 	break;
 	case "secp160r1":
 		return C.load_curve_hex("secp160r1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFF",
@@ -74,7 +66,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"23A628553168947D59DCC912042351377AC5FB32",
 			"0100000000000000000001F4C8F927AED3CA752257",
 			"01")
-	// 	break;
 	case "secp160r2":
 		return C.load_curve_hex("secp160r2",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFAC73",
@@ -84,7 +75,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"FEAFFEF2E331F296E071FA0DF9982CFEA7D43F2E",
 			"0100000000000000000000351EE786A818F3A1A16B",
 			"01")
-	// 	break;
 	case "secp192k1":
 		return C.load_curve_hex("secp192k1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFEE37",
@@ -94,7 +84,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"9B2F2F6D9C5628A7844163D015BE86344082AA88D95E2F9D",
 			"FFFFFFFFFFFFFFFFFFFFFFFE26F2FC170F69466A74DEFD8D",
 			"01")
-	// 	break;
 	case "secp192r1":
 		return C.load_curve_hex("secp192r1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFFFFFFFFFFFF",
@@ -104,7 +93,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"07192B95FFC8DA78631011ED6B24CDD573F977A11E794811",
 			"FFFFFFFFFFFFFFFFFFFFFFFF99DEF836146BC9B1B4D22831",
 			"01")
-	// 	break;
 	case "secp224k1":
 		return C.load_curve_hex("secp224k1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFE56D",
@@ -114,7 +102,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"7E089FED7FBA344282CAFBD6F7E319F7C0B0BD59E2CA4BDB556D61A5",
 			"010000000000000000000000000001DCE8D2EC6184CAF0A971769FB1F7",
 			"01")
-	// 	break;
 	case "secp224r1":
 		return C.load_curve_hex("secp224r1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000001",
@@ -124,7 +111,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"BD376388B5F723FB4C22DFE6CD4375A05A07476444D5819985007E34",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFF16A2E0B8F03E13DD29455C5C2A3D",
 			"01")
-	// 	break;
 	case "secp256k1":
 		return C.load_curve_hex("secp256k1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F",
@@ -134,7 +120,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141",
 			"01")
-	// 	break;
 	case "secp256r1":
 		return C.load_curve_hex("secp256r1",
 			"FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF",
@@ -144,7 +129,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"4FE342E2FE1A7F9B8EE7EB4A7C0F9E162BCE33576B315ECECBB6406837BF51F5",
 			"FFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551",
 			"01")
-	// 	break;
 	case "secp384r1":
 		return C.load_curve_hex("secp384r1",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFFFF0000000000000000FFFFFFFF",
@@ -154,7 +138,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 			"3617DE4A96262C6F5D9E98BF9292DC29F8F41DBD289A147CE9DA3113B5F0B8C00A60B1CE1D7E819D7A431D7C90EA0E5F",
 			"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC7634D81F4372DDF581A0DB248B0A77AECEC196ACCC52973",
 			"01")
-	// 	break;
 	case "secp521r1":
 		return C.load_curve_hex("secp521r1",
 			"01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
@@ -168,36 +151,20 @@ func (C *Curve) GetCurve(name string) *Curve {
 
 	print("this hits if no name fits\n")
 	return C
-	// 	break;
-	// default:
-	//Write error message
-	// 	fprintf(stderr, "\nCurve number not available!\n");
-	// 	exit(4);	//Exit with 4, internal inconsistency
 }
 
 
 /* sets Curve parameters to p,a,b,gx,gy,n,h string*/
 func (C *Curve) load_curve_hex(name, p, a, b, gx, gy, n, h string) *Curve {
 
-	// 	defer print("debug: loaded curve\n")
 	return C.load_curve(name, p, a, b, gx, gy, n, h, 16)
 }
 
 func (C *Curve) load_curve(name, p, a, b, gx, gy, n, h string, base int) *Curve {
-	// 	C := new(Curve)
-	// 	fmt.Printf("debug: load_curve %s\np: %s\na: %s\nb: %s\ngx:%s\ngy:%s\nn: %s\nh: %s\nbase: %d\n", name, p, a, b, gx, gy, n, h, base)
-	// 	defer print("debug: loaded curve ",name,"\n")
 	C.name = name
 
-	// 	C.G.X = new(big.Int)
-	// 	C.G.Y = new(big.Int)
-
-	// 	C.p.SetString(p, base)
-
-	// 	pt.SetString(p,base)
-
 	C.p.SetString(p, base)
-	// 	print(C.p.String(), "\n")
+
 	C.a.SetString(a, base)
 	C.b.SetString(b, base)
 
@@ -206,16 +173,12 @@ func (C *Curve) load_curve(name, p, a, b, gx, gy, n, h string, base int) *Curve 
 	C.n.SetString(n, base)
 	C.h.SetString(h, base)
 
-	// 	print(C.G.X.String(),"\n")
-	// 			C.Print()
-	// 		fmt.Printf("\n CX \n")
 	return C
 }
 
 
 func (C *Curve) Print() {
 
-	// 	fmt.Printf("Curve: %s\n", C.name)
 	fmt.Printf("%s\n", C.String())
 
 }

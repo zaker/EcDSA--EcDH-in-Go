@@ -1,4 +1,5 @@
 # ignore everything exept .go and Makefile
 *
+!/
 !*.6
 !Makefile

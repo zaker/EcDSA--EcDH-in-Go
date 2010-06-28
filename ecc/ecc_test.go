@@ -12,7 +12,6 @@ import (
 
 func TestPointOperations(t *testing.T) {
 
-
 	C := NewCurve()
 	curve_name := "secp256k1"
 	C.GetCurve(curve_name)
@@ -83,70 +82,61 @@ func TestPointOperations(t *testing.T) {
 
 }
 
-func TestSigning(t *testing.T){
-	
-	
-	
+func TestSigning(t *testing.T) {
+
 	secret := "secret0"
 
 	h := sha.New()
 
 	h.Write([]byte(secret))
-// 		print("pass:",secret,"\nhash:", h.Sum(),"\n")
 	secnum := new(big.Int).SetBytes(h.Sum())
 
-	
 	C := NewCurve()
 	curve_name := "secp256k1"
 	C.GetCurve(curve_name)
-	
+
 	E := NewPair()
 
-	
-	E.EccdsaKeyGen(secnum,C)
-	
-	if E.d.String() != secnum.String(){
+	E.EccdsaKeyGen(secnum, C)
+
+	if E.d.String() != secnum.String() {
 		t.Errorf("PrivateKey fail")
-		
+
 	}
-	
-	if !E.EccdsaKeyValidate(){
+
+	if !E.EccdsaKeyValidate() {
 		t.Errorf("KeyPair Fail")
-		
+
 	}
 	Qc := new(Point)
-	
-	Qc = Qc.SetString("109837834369274504389664124593965957096098981290804729253410145109750445901603", 
-			  "109557846963727535798669146173709773735187162620328251093267341541062606906157",10)
-	
-	
-	if !Cmp(E.Q,Qc){
-		
+
+	Qc = Qc.SetString("109837834369274504389664124593965957096098981290804729253410145109750445901603",
+		"109557846963727535798669146173709773735187162620328251093267341541062606906157", 10)
+
+	if !Cmp(E.Q, Qc) {
+
 		t.Errorf("Wrong PrivateKey")
-		
+
 	}
-	
-	
+
 	if C.name != E.C.name {
 		t.Errorf("Wrong Curve")
 	}
-	
-	h.Reset()
-	
-	m := "ABCD"
-	
-	h.Write([]byte(m))
-// 		print("pass:",secret,"\nhash:", h.Sum(),"\n")
-	md := new(big.Int).SetBytes(h.Sum())
-	
-	S := NewSign()
-	
-	S = E.EccdsaSign(md )
 
-	
-	if !E.EccdsaVerify(md,S){
-		
+	h.Reset()
+
+	m := "ABCD"
+
+	h.Write([]byte(m))
+	md := new(big.Int).SetBytes(h.Sum())
+
+	S := NewSign()
+
+	S = E.EccdsaSign(md)
+
+	if !E.EccdsaVerify(md, S) {
+
 		t.Errorf("Signature failed")
 	}
-	
+
 }

@@ -203,43 +203,39 @@ func (E *EccKeyPair) EccdsaVerify(md *big.Int, S *Signature) bool {
 
 func (E *EccKeyPair) EccdsaKeyValidate() bool {
 	v := false
-	
+
 	y := new(big.Int)
 	x := new(big.Int)
-	
+
 	switch {
-		case E.Q.x.Cmp(big.NewInt(1)) < 0:
-			println("X less than 1")
-			
-		case E.Q.x.Cmp(E.C.p) > 0:
-			println("X over p")
-		case E.Q.y.Cmp(big.NewInt(1)) < 0:
-			println("Y less than 1")
-			
-		case E.Q.y.Cmp(E.C.p) > 0:
-			println("Y over p")
-		default:
-			y.Exp(E.Q.y,big.NewInt(2),E.C.p)
-			
-			x.Exp(E.Q.x,big.NewInt(3),E.C.p)
-			
-			t := new(big.Int)
-			
-			t.Mul(E.C.a,E.Q.x)
-			t.Mod(t,E.C.p)
-			
-			t.Add(t,x)
-			
-			t.Add(t,E.C.b)
-			t.Mod(t,E.C.p)
-			
-			return t.Cmp(y) == 0
-			
-			
-		
+	case E.Q.x.Cmp(big.NewInt(1)) < 0:
+		println("X less than 1")
+
+	case E.Q.x.Cmp(E.C.p) > 0:
+		println("X over p")
+	case E.Q.y.Cmp(big.NewInt(1)) < 0:
+		println("Y less than 1")
+
+	case E.Q.y.Cmp(E.C.p) > 0:
+		println("Y over p")
+	default:
+		y.Exp(E.Q.y, big.NewInt(2), E.C.p)
+
+		x.Exp(E.Q.x, big.NewInt(3), E.C.p)
+
+		t := new(big.Int)
+
+		t.Mul(E.C.a, E.Q.x)
+		t.Mod(t, E.C.p)
+
+		t.Add(t, x)
+
+		t.Add(t, E.C.b)
+		t.Mod(t, E.C.p)
+
+		return t.Cmp(y) == 0
+
 	}
-	
-	
-	
+
 	return v
 }
