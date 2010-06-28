@@ -12,14 +12,6 @@ import (
 
 func TestPointOperations(t *testing.T) {
 
-	secret := "secret0"
-
-	h := sha.New()
-
-	h.Write([]byte(secret))
-	// 	print("pass:",secret,"\nhash:", h.Sum(),"\n")
-	secnum := new(big.Int).SetBytes(h.Sum())
-	println(h.Size(), " ", secnum.String())
 
 	C := NewCurve()
 	curve_name := "secp256k1"
@@ -29,7 +21,6 @@ func TestPointOperations(t *testing.T) {
 		t.Errorf("Failed loading curve %s", curve_name)
 
 	}
-	println("Setting Checkpoint:")
 
 	k := new(big.Int)
 	Qi := new(Point)
@@ -56,15 +47,12 @@ func TestPointOperations(t *testing.T) {
 		"32670510020758816978083085130507043184471273380659243275938904335757337488424", 10)
 
 	I := NewPoint()
-	println("Inverting Generator:")
 	I.Inv(C.G, C)
-	C.G.Print()
+
 	if !Cmp(I, Qi) {
 
 		t.Errorf("Additive inverse failed // I = -K")
 	}
-
-	println("Adding G + (-G)")
 
 	T := NewPoint()
 	T.Add(I, C.G, C)
@@ -93,4 +81,72 @@ func TestPointOperations(t *testing.T) {
 		t.Errorf("Multiplication Failed")
 	}
 
+}
+
+func TestSigning(t *testing.T){
+	
+	
+	
+	secret := "secret0"
+
+	h := sha.New()
+
+	h.Write([]byte(secret))
+// 		print("pass:",secret,"\nhash:", h.Sum(),"\n")
+	secnum := new(big.Int).SetBytes(h.Sum())
+
+	
+	C := NewCurve()
+	curve_name := "secp256k1"
+	C.GetCurve(curve_name)
+	
+	E := NewPair()
+
+	
+	E.EccdsaKeyGen(secnum,C)
+	
+	if E.d.String() != secnum.String(){
+		t.Errorf("PrivateKey fail")
+		
+	}
+	
+	if !E.EccdsaKeyValidate(){
+		t.Errorf("KeyPair Fail")
+		
+	}
+	Qc := new(Point)
+	
+	Qc = Qc.SetString("109837834369274504389664124593965957096098981290804729253410145109750445901603", 
+			  "109557846963727535798669146173709773735187162620328251093267341541062606906157",10)
+	
+	
+	if !Cmp(E.Q,Qc){
+		
+		t.Errorf("Wrong PrivateKey")
+		
+	}
+	
+	
+	if C.name != E.C.name {
+		t.Errorf("Wrong Curve")
+	}
+	
+	h.Reset()
+	
+	m := "ABCD"
+	
+	h.Write([]byte(m))
+// 		print("pass:",secret,"\nhash:", h.Sum(),"\n")
+	md := new(big.Int).SetBytes(h.Sum())
+	
+	S := NewSign()
+	
+	S = E.EccdsaSign(md )
+
+	
+	if !E.EccdsaVerify(md,S){
+		
+		t.Errorf("Signature failed")
+	}
+	
 }

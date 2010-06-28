@@ -58,7 +58,7 @@ func (P *Point) String() string {
 	if P.inf {
 		s = "Point at infinity\n"
 	} else {
-		s = "\nPoint: (\ny:\t" + P.x.String() + ",\nY:\t" + P.y.String() + ")\n"
+		s = "\nPoint: (\nx:\t" + P.x.String() + ",\ny:\t" + P.y.String() + ")\n"
 	}
 	return s
 }
@@ -225,15 +225,11 @@ func (R *Point) Add(P, Q *Point, C *Curve) *Point {
 		dx.Sub(P.x, R.x) //y = Px - Rx
 		dx.Mod(dx, C.p)
 
-		dx.Mul(s, dx) //dx = s*dx
-
+		dx.Mul(s, dx) //dx = s*dx mod p
+		dx.Mod(dx, C.p)
 		R.y.Sub(dx, P.y) //y = y - Py
 
 		R.y.Mod(R.y, C.p) //Ry = y mod p
-		// 		println("Rx: " + R.x.String())
-
-		// 		print("R:")
-		// 		R.Print()
 	}
 
 	return R
