@@ -1,0 +1,5 @@
+# ignore everything exept .go and Makefile
+*
+!./
+!*.go
+!Makefile
