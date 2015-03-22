@@ -2,11 +2,10 @@ package ecc
 
 import (
 	"big"
-	"os"
-	"io"
 	"fmt"
+	"io"
+	"os"
 )
-
 
 type EccKeyPair struct {
 	d *big.Int
@@ -51,7 +50,6 @@ func randomNumber(rand io.Reader, max *big.Int) (n *big.Int, err os.Error) {
 
 	return
 }
-
 
 func NewPair() *EccKeyPair {
 
@@ -101,7 +99,6 @@ func (S *Signature) String() string {
 	return s
 
 }
-
 
 func (E *EccKeyPair) EccdsaKeyGen(d *big.Int, C *Curve) *EccKeyPair {
 
@@ -158,7 +155,6 @@ func (E *EccKeyPair) EccdsaSign(md *big.Int) *Signature {
 	return S
 }
 
-
 /* Signature Verification
 For B to authenticate A's signature, B must have A's public key QA
 Verify that r and s are integers in [1,n - 1]. If not, the signature is invalid
@@ -199,7 +195,6 @@ func (E *EccKeyPair) EccdsaVerify(md *big.Int, S *Signature) bool {
 	}
 	return v
 }
-
 
 func (E *EccKeyPair) EccdsaKeyValidate() bool {
 	v := false

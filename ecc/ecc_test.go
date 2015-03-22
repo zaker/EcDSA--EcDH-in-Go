@@ -2,13 +2,12 @@ package ecc
 
 import (
 	// 	"./ecc"
-	sha "crypto/sha256"
 	"big"
+	sha "crypto/sha256"
 	"testing"
 	// 	"fmt"
 	// 	"hash"
 )
-
 
 func TestPointOperations(t *testing.T) {
 

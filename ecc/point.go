@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-
 type Point struct {
 	x *big.Int
 
@@ -66,7 +65,6 @@ func (P *Point) String() string {
 func (P *Point) SetString(x, y string, base int) *Point {
 	// 	P = new(Point)
 
-
 	P.x = new(big.Int)
 	P.y = new(big.Int)
 
@@ -88,7 +86,6 @@ func Cmp(P, Q *Point) bool {
 	return P.y.Cmp(Q.y) == 0 && P.x.Cmp(Q.x) == 0
 
 }
-
 
 /* R = 2P */
 func (R *Point) double(P *Point, C *Curve) *Point {
@@ -128,7 +125,6 @@ func (R *Point) double(P *Point, C *Curve) *Point {
 		//Calculate Ry using algorithm shown to the right of the commands
 		//Ry = s(Px-Rx) - Py mod p
 
-
 		t.Sub(P.x, R.x) //t = Px - Rx mod p
 		t.Mod(t, C.p)
 
@@ -138,13 +134,11 @@ func (R *Point) double(P *Point, C *Curve) *Point {
 		t.Sub(t, P.y) //t = t - Py mod p
 		R.y.Mod(t, C.p)
 
-
 		// 		mpz_mod(R->y, t3, curve->p);	//Ry = t3 mod p
 
 	}
 	return R
 }
-
 
 /* R = P + Q mod C.p*/
 func (R *Point) Add(P, Q *Point, C *Curve) *Point {
@@ -160,7 +154,6 @@ func (R *Point) Add(P, Q *Point, C *Curve) *Point {
 	// 	P.Print()
 	// 	Q.Print()
 	// 	println("P==Q : ",Cmp(P, Q), "-P==Q : ", Cmp(IP, Q))
-
 
 	switch {
 	case Q.inf:
@@ -263,7 +256,6 @@ func bitCheck(k *big.Int, n uint) bool {
 	return b
 }
 
-
 /* R = kP  */
 func (R *Point) Mul(k *big.Int, P *Point, C *Curve) *Point {
 	//If at infinity R is also at infinity
@@ -281,7 +273,6 @@ func (R *Point) Mul(k *big.Int, P *Point, C *Curve) *Point {
 
 		R.inf = true
 
-
 		/*
 			Loops through the integer bit per bit, if a bit is 1 then x is added to the result. Looping through the multiplier in this manner allows us to use as many point doubling operations as possible. No reason to say 5P=P+P+P+P+P, when you might as well just use 5P=2(2P)+P.
 			This is not the most effecient method of point multiplication, but it's faster than P+P+P+... which is not computational feasiable.
@@ -289,7 +280,6 @@ func (R *Point) Mul(k *big.Int, P *Point, C *Curve) *Point {
 		// 		T := new(Point)
 		// 		R.SetString("0","0",10)
 		for i := int64(0); i < int64(k.BitLen()); i++ {
-
 
 			// 			 big.NewInt(1).Lsh(big.NewInt(i))
 			if bitCheck(k, uint(i)) {

@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"net"
 	"os"
-	"time"
-	"fmt"
 	"strconv"
+	"time"
 )
 
 var c net.Conn
@@ -18,7 +18,7 @@ func main() {
 	}
 	i := 0
 	for {
-		_, err := c.Write([]byte("hi"+ strconv.Itoa(i) +"\n"))
+		_, err := c.Write([]byte("hi" + strconv.Itoa(i) + "\n"))
 		if err != nil {
 			println(err.String())
 		}

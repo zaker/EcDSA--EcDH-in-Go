@@ -4,7 +4,6 @@ import (
 	"big"
 )
 
-
 func (E *EccKeyPair) EccDH(q *Point) *big.Int {
 
 	key := new(Point)

@@ -153,7 +153,6 @@ func (C *Curve) GetCurve(name string) *Curve {
 	return C
 }
 
-
 /* sets Curve parameters to p,a,b,gx,gy,n,h string*/
 func (C *Curve) load_curve_hex(name, p, a, b, gx, gy, n, h string) *Curve {
 
@@ -175,7 +174,6 @@ func (C *Curve) load_curve(name, p, a, b, gx, gy, n, h string, base int) *Curve 
 
 	return C
 }
-
 
 func (C *Curve) Print() {
 
@@ -215,7 +213,6 @@ func NewCurve() *Curve {
 }
 
 // func (C *Curve)GetCurve(name string) *Curve{
-
 
 // 	return Curves[name]
 // }
