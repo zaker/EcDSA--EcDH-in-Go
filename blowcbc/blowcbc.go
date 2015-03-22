@@ -12,7 +12,6 @@ func printBytes(pb []byte) {
 	println("")
 }
 
-
 func padd(blocks []byte, bz byte) []byte {
 	// 	blocks length
 	bl := len(blocks)

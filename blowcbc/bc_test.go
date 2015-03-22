@@ -1,8 +1,8 @@
 package blowcbc
 
 import (
-	"testing"
 	"bytes"
+	"testing"
 )
 
 func TestPadd(t *testing.T) {
