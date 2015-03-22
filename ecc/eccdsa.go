@@ -47,8 +47,6 @@ func randomNumber(rand io.Reader, max *big.Int) (n *big.Int, err os.Error) {
 			return
 		}
 	}
-
-	return
 }
 
 func NewPair() *EccKeyPair {
