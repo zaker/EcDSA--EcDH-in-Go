@@ -1,8 +1,8 @@
 package ecc
 
 import (
-	"big"
 	"fmt"
+	"math/big"
 )
 
 // var Curves = map[string] Curve{

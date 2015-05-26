@@ -1,9 +1,9 @@
 package ecc
 
 import (
-	"big"
 	"fmt"
 	"io"
+	"math/big"
 	"os"
 )
 
@@ -19,7 +19,7 @@ type Signature struct {
 }
 
 // randomNumber returns a uniform random value in [0, max).
-func randomNumber(rand io.Reader, max *big.Int) (n *big.Int, err os.Error) {
+func randomNumber(rand io.Reader, max *big.Int) (n *big.Int, err error) {
 	k := (max.BitLen() + 7) / 8
 
 	// r is the number of bits in the used in the most significant byte of
@@ -118,7 +118,7 @@ The signature is the pair (r, s)
 
 func (E *EccKeyPair) EccdsaSign(md *big.Int) *Signature {
 	S := new(Signature)
-	urand, _ := os.Open("/dev/urandom", os.O_RDONLY, 0)
+	urand, _ := os.Open("/dev/urandom")
 	r := new(big.Int)
 	s := new(big.Int)
 	Qs := new(Point)

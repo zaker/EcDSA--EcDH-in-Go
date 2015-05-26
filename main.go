@@ -7,7 +7,7 @@ import (
 func main() {
 
 	print("hoho\n")
-	C := ecct.NewCurve()
+	C := ecc.NewCurve()
 	print("hoho\n")
 	// 	C.GetCurve("secp256r1")
 

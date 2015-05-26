@@ -1,7 +1,7 @@
 package ecc
 
 import (
-	"big"
+	"math/big"
 )
 
 func (E *EccKeyPair) EccDH(q *Point) *big.Int {

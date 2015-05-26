@@ -1,8 +1,8 @@
 package ecc
 
 import (
-	"big"
 	"fmt"
+	"math/big"
 )
 
 type Point struct {
