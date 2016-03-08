@@ -8,5 +8,3 @@ GOFILES=\
 	curve.go
 
 include $(GOROOT)/src/Make.pkg
-
-

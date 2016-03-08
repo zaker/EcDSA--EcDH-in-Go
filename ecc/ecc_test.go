@@ -2,8 +2,8 @@ package ecc
 
 import (
 	// 	"./ecc"
-	"big"
 	sha "crypto/sha256"
+	"math/big"
 	"testing"
 	// 	"fmt"
 	// 	"hash"
